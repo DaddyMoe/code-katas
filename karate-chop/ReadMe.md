@@ -1,4 +1,4 @@
-# Kata02: Karate Chop
+# Karate Chop
 A binary chop (sometimes called the more prosaic binary search) finds the position of value in a 
 sorted array of values. It achieves some efficiency by halving the number of items under 
 consideration each time it probes the values: in the first pass it determines whether the 
