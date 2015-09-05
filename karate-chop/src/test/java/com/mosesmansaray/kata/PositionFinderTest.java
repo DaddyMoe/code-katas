@@ -90,6 +90,31 @@ public class PositionFinderTest {
     assertEquals(errorMsg, expectedPosition, actualPosition);
   }
 
-  //TODO: more tests can be done here for edge and special cases
+  @Test
+  public void chopTestOfExerciseData(){
+    assertPositionIsAsExpected(new int[]{}, 3, -1);
+    assertPositionIsAsExpected(new int[]{1}, 3, -1);
+    assertPositionIsAsExpected(new int[]{1}, 1, 0);
+    //
+    assertPositionIsAsExpected(new int[]{1,3,5}, 1, 0);
+    assertPositionIsAsExpected(new int[]{1,3,5}, 3, 1);
+    assertPositionIsAsExpected(new int[]{1,3,5}, 5, 2);
+    assertPositionIsAsExpected(new int[]{1,3,5}, 0, -1);
+    assertPositionIsAsExpected(new int[]{1,3,5}, 2, -1);
+    assertPositionIsAsExpected(new int[]{1,3,5}, 4, -1);
+    assertPositionIsAsExpected(new int[]{1,3,5}, 6, -1);
+    //
+    assertPositionIsAsExpected(new int[]{1,3,5,7}, 1, 0);
+    assertPositionIsAsExpected(new int[]{1,3,5,7}, 3, 1);
+    assertPositionIsAsExpected(new int[]{1,3,5,7}, 5, 2);
+    assertPositionIsAsExpected(new int[]{1,3,5,7}, 7, 3);
+    assertPositionIsAsExpected(new int[]{1,3,5,7}, 0, -1);
+    assertPositionIsAsExpected(new int[]{1,3,5,7}, 2, -1);
+    assertPositionIsAsExpected(new int[]{1,3,5,7}, 4, -1);
+    assertPositionIsAsExpected(new int[]{1,3,5,7}, 6, -1);
+    assertPositionIsAsExpected(new int[]{1,3,5,7}, 8, -1);
+  }
+
+  //TODO: more tests can be done here for edge and special case code implementation
 
 }
