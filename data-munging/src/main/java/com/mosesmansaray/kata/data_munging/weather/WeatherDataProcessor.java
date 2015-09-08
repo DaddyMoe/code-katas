@@ -20,7 +20,7 @@ public class WeatherDataProcessor {
 
   public DaysWeather buildWeatherDay(String day4Line) {
     day4Line = day4Line.replaceAll("\\*", "");
-    String[] daysWeatherArray = day4Line.trim().split("\\s+");
+    String[] daysWeatherArray = day4Line.trim().split("\\s+"); //Trim and Split by one or more spaces
 
     int day = Integer.parseInt(daysWeatherArray[0]);
     int maxTemp = Integer.parseInt(daysWeatherArray[1]);
