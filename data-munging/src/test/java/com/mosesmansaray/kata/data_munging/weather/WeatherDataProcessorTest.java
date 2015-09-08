@@ -1,4 +1,4 @@
-package com.mosesmansaray.kata.data_munging;
+package com.mosesmansaray.kata.data_munging.weather;
 
 import org.junit.Test;
 
