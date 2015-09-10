@@ -1,12 +1,10 @@
 package com.mosesmansaray.kata.data_munging.weather;
 
+import com.mosesmansaray.kata.data_munging.processor.DataMungingProcessor;
+import com.mosesmansaray.kata.data_munging.reader.DataMungingFileReader;
+
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,9 +14,11 @@ import java.util.List;
  *
  * @author moses.mansaray
  */
-public class WeatherDataProcessor {
+public class WeatherDataProcessor implements DataMungingProcessor{
 
-  public DaysWeather buildWeatherDay(String day4Line) {
+  private DataMungingFileReader fileReader = new DataMungingFileReader();
+
+  public DaysWeather processDataInputRow(String day4Line) {
     day4Line = day4Line.replaceAll("\\*", "");
     String[] daysWeatherArray = day4Line.trim().split("\\s+"); //Trim and Split by one or more spaces
 
@@ -37,17 +37,18 @@ public class WeatherDataProcessor {
     return daysWeather.getMaxTemperature() - daysWeather.getMinTemperature();
   }
 
-  public List<DaysWeather> getWeatherFromSource(String sourcePathOfData) {
+  public List<DaysWeather> processDataInput(String sourcePathOfData) {
     List<DaysWeather> monthsWeather = new ArrayList<>();
+    DaysWeather daysWeather;
 
-    Path resourcePath = getResourcePath(sourcePathOfData);
-
-    try (BufferedReader reader = new BufferedReader(new FileReader(resourcePath.toString()))) {
+    try {
+      BufferedReader reader = fileReader.getBufferedReader(sourcePathOfData);
       String line;
       int lineNumber = 0;
+
       while ((line = reader.readLine()) != null) {
         if (lineNumber >= 2 && lineNumber < 32) {
-          DaysWeather daysWeather = buildWeatherDay(line);
+          daysWeather = processDataInputRow(line);
           monthsWeather.add(daysWeather);
         }
         lineNumber++;
@@ -59,14 +60,4 @@ public class WeatherDataProcessor {
     return monthsWeather;
   }
 
-  private Path getResourcePath(String sourcePathOfData) {
-    Path resourcePath = null;
-    URL resourceUrl = this.getClass().getResource("/" + sourcePathOfData);
-    try {
-      resourcePath = Paths.get(resourceUrl.toURI());
-    } catch (URISyntaxException e) {
-      e.printStackTrace();
-    }
-    return resourcePath;
-  }
 }
