@@ -1,14 +1,11 @@
 package com.mosesmansaray.kata.data_munging.soccer;
 
-import com.mosesmansaray.kata.data_munging.soccer.exceptions.NotAValidLineOsStats;
+import com.mosesmansaray.kata.data_munging.processor.DataMungingProcessor;
+import com.mosesmansaray.kata.data_munging.reader.DataMungingFileReader;
+import com.mosesmansaray.kata.data_munging.soccer.exception.SoccerLeagueDataMungingException;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,14 +17,17 @@ import java.util.logging.Logger;
  *
  * @author moses.mansaray
  */
-public class LeagueTableProcessor {
+public class LeagueTableProcessor implements DataMungingProcessor {
   private final static Logger LOGGER = Logger.getLogger(LeagueTableProcessor.class.getName());
 
-  public TeamLeagueStat buildTeamLeagueStat(String exampleLine1) throws NotAValidLineOsStats {
+  private DataMungingFileReader fileReader = new DataMungingFileReader();
+
+  @Override
+  public TeamLeagueStat processDataInputRow(String exampleLine1) throws SoccerLeagueDataMungingException {
     String[] stats = exampleLine1.trim().split("\\s+");
 
     if (stats.length < 9) {
-      throw new NotAValidLineOsStats("Data passed in is not a valid stats");
+      throw new SoccerLeagueDataMungingException("Data passed in is not a valid stats");
     }
 
     int goalsScoreFor = Integer.parseInt(stats[6]);
@@ -36,22 +36,23 @@ public class LeagueTableProcessor {
     return new TeamLeagueStat(stats[1], goalsScoreFor, goalsScoredAgainst, goalsScoredDiff);
   }
 
-  public List<TeamLeagueStat> buildTeamLeagueStatList(String sourcePath) {
-    List<TeamLeagueStat> teamLeagueStats = new ArrayList<>();
-    Path resourcePath = getResourcePath(sourcePath);
+  @Override
+  public List processDataInput(String sourcePath) {
+    List teamLeagueStats = new ArrayList<>();
+    TeamLeagueStat daysWeather;
 
-    try (BufferedReader reader = new BufferedReader(new FileReader(resourcePath.toString()))) {
-      TeamLeagueStat daysWeather;
+    try {
+      BufferedReader reader = fileReader.getBufferedReader(sourcePath);
       int lineNumber = 0;
       String line;
 
       while ((line = reader.readLine()) != null) {
         if (lineNumber >= 1) {
           try {
-            daysWeather = buildTeamLeagueStat(line);
+            daysWeather = processDataInputRow(line);
             teamLeagueStats.add(daysWeather);
-          } catch (NotAValidLineOsStats notAValidLineOsStats) {
-            LOGGER.log(Level.WARNING, notAValidLineOsStats.getMessage());
+          } catch (SoccerLeagueDataMungingException soccerLeagueDataMungingException) {
+            LOGGER.log(Level.WARNING, soccerLeagueDataMungingException.getMessage());
           }
         }
         lineNumber++;
@@ -65,19 +66,8 @@ public class LeagueTableProcessor {
     return teamLeagueStats;
   }
 
-  private Path getResourcePath(String sourcePathOfData) {
-    Path resourcePath = null;
-    URL resourceUrl = this.getClass().getResource("/" + sourcePathOfData);
-    try {
-      resourcePath = Paths.get(resourceUrl.toURI());
-    } catch (URISyntaxException e) {
-      e.printStackTrace();
-    }
-    return resourcePath;
-  }
-
-  public String getTeamWithBestGoalDifference(List<TeamLeagueStat> teamLeagueStat) {
-    TeamLeagueStat teamWithBestGoalDifference = teamLeagueStat.get(teamLeagueStat.size() - 1);
+  public String getTeamWithBestGoalDifference(List teamLeagueStat) {
+    TeamLeagueStat teamWithBestGoalDifference = (TeamLeagueStat) teamLeagueStat.get(teamLeagueStat.size() - 1);
     return teamWithBestGoalDifference.getTeamName();
   }
 }
