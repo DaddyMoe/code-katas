@@ -1,56 +1,55 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.mosesmansaray.kata</groupId>
-  <artifactId>CodeKatas</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <modules>
-    <module>karate-chop</module>
-    <module>data-munging</module>
-  </modules>
+    <groupId>com.mosesmansaray.kata</groupId>
+    <artifactId>CodeKatas</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>karate-chop</module>
+        <module>data-munging</module>
+        <module>mayflies</module>
+    </modules>
 
-  <packaging>pom</packaging>
+    <packaging>pom</packaging>
 
-  <name>CodeKatas</name>
-  <description>Simple 30 minutes to an hour code Katas to horn skills</description>
-  <url>www.mosesmansaray.com</url>
+    <name>CodeKatas</name>
+    <description>Simple 30 minutes to an hour code Katas to horn skills</description>
+    <url>www.mosesmansaray.com</url>
 
-  <properties>
-    <junit.version>4.10</junit.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <properties>
+        <junit.version>4.10</junit.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-  <repositories>
-    <repository>
-      <id>sonatype</id>
-      <name>Sonatype Groups</name>
-      <url>https://oss.sonatype.org/content/groups/public/</url>
-    </repository>
-  </repositories>
+    <repositories>
+        <repository>
+            <id>sonatype</id>
+            <name>Sonatype Groups</name>
+            <url>https://oss.sonatype.org/content/groups/public/</url>
+        </repository>
+    </repositories>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.3</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
