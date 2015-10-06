@@ -118,7 +118,7 @@ public class DungeonGeneratorTest {
         assertFalse(areSame);
     }
 //
-//    @Test
+//    @JsonValueFinder
 //    public void shouldGenerateRoomWithDownStairsOnSecondRow(){
 //        RoomGenerator roomGenerator = new RoomGenerator(3, 10);
 //        String room = roomGenerator.create();

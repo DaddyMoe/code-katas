@@ -9,6 +9,7 @@
         <module>karate-chop</module>
         <module>data-munging</module>
         <module>mayflies</module>
+        <module>work-sessions</module>
     </modules>
 
     <packaging>pom</packaging>
