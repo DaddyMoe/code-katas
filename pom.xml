@@ -8,6 +8,7 @@
   <modules>
     <module>karate-chop</module>
     <module>data-munging</module>
+    <module>work-sessions</module>
   </modules>
 
   <packaging>pom</packaging>
