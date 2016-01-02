@@ -9,6 +9,7 @@
     <module>karate-chop</module>
     <module>data-munging</module>
     <module>work-sessions</module>
+    <module>random</module>
   </modules>
 
   <packaging>pom</packaging>
