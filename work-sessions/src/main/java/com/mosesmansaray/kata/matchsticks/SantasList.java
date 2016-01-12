@@ -29,6 +29,8 @@ public class SantasList {
         try {
             byte[] allBytes = Files.readAllBytes((Paths.get(path)));
             schedule2 = new String(allBytes);
+//            schedule2 = schedule2.replace("\\\\x[0-9a-f]{2}","");
+            schedule2 = schedule2.replaceAll("x[0-9A-Fa-f]+","#");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,7 +39,7 @@ public class SantasList {
 
     public int getCharacterSafeInMemory(String textToTest) {
         int fileCharacterCount = getFileCharacterCount(new String(textToTest));
-        String characterInMem = new String(textToTest).replace("\n", "");
+        String characterInMem = new String(textToTest).replace("\n", "-");
         int diff = characterInMem.length() - fileCharacterCount;
         return diff;
     }
