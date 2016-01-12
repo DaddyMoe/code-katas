@@ -1,6 +1,5 @@
 package com.mosesmansaray.kata.matchsticks;
 
-import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -37,14 +36,9 @@ public class SantasList {
     }
 
     public int getCharacterSafeInMemory(String textToTest) {
-
         int fileCharacterCount = getFileCharacterCount(new String(textToTest));
-
         String characterInMem = new String(textToTest).replace("\n", "");
-        byte[] bytesCharacterInMem = DatatypeConverter.parseHexBinary(characterInMem);
-        int characterInMemCount = new String(bytesCharacterInMem, Charset.defaultCharset()).length();
-
-        int diff = characterInMemCount - fileCharacterCount;
+        int diff = characterInMem.length() - fileCharacterCount;
         return diff;
     }
 
@@ -52,6 +46,7 @@ public class SantasList {
         String[] textFile = textToTest.split("\n");
         int count = 0;
         for (String s : textFile) {
+            //TODO: Escape HEX characters before count
             count += getCharacterCount(s);
         }
         return count;
@@ -61,8 +56,7 @@ public class SantasList {
     public int getCharacterCount(String lineToTest) {
         String replacedLine = lineToTest.replace("\\\"", "\\").replace("\\x27", "'").replace("\n", "");
 
-        replacedLine = DatatypeConverter.parseString(replacedLine);
-
+        //TODO: Escape HEX characters before count
         return replacedLine.length() - 2;
     }
 
