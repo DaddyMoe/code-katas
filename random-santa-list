@@ -1,0 +1,10 @@
+   List<String> schedule;
+
+  public fileReader (String scheduleFilePath) {
+    try {
+      String path = getClass().getClassLoader().getResource(scheduleFilePath).getPath();
+      schedule = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
+    } catch (IOException e) {
+      schedule = new ArrayList<>();
+    }
+  }
