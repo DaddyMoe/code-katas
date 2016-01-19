@@ -12,6 +12,7 @@
     <module>random</module>
     <module>spell-checker</module>
     <module>trie</module>
+    <module>parameterised-tests</module>
   </modules>
 
   <packaging>pom</packaging>
