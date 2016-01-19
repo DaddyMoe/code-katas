@@ -10,6 +10,8 @@
     <module>data-munging</module>
     <module>work-sessions</module>
     <module>random</module>
+    <module>spell-checker</module>
+    <module>trie</module>
   </modules>
 
   <packaging>pom</packaging>
