@@ -1,4 +1,4 @@
-package com.mosesmansaray.kata.data_munging;
+package com.mosesmansaray.kata.data_munging.weather;
 
 /**
  * Created on 06/09/2015.
@@ -38,7 +38,6 @@ public class DaysWeather implements Comparable<DaysWeather>{
     return weatherSpread;
   }
 
-  @Override
   public int compareTo(DaysWeather daysWeather) {
     int compareWeatherSpread = daysWeather.getWeatherSpread();
     return this.getWeatherSpread() - compareWeatherSpread;
