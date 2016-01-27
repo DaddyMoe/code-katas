@@ -16,31 +16,31 @@ public class VHSRecorderScheduleTest {
 
   @Test
   public void shouldReturnScheduleListFromFile() {
-    VHSRecorderSchedule schedule = new VHSRecorderSchedule("/vhs_recording_problem/input01.text");
+    VHSRecorderSchedule schedule = new VHSRecorderSchedule("vhs_recording_problem/input01.text");
     assertEquals(4, schedule.getSchedule().size());
   }
 
   @Test
   public void shouldReturnStartTime(){
-    VHSRecorderSchedule schedule = new VHSRecorderSchedule("/vhs_recording_problem/input01.text");
+    VHSRecorderSchedule schedule = new VHSRecorderSchedule("vhs_recording_problem/input01.text");
     assertEquals(1555, schedule.getProgramme("1555 1645").getStart());
   }
 
   @Test
   public void shouldReturnEndTime(){
-    VHSRecorderSchedule schedule = new VHSRecorderSchedule("/vhs_recording_problem/input01.text");
+    VHSRecorderSchedule schedule = new VHSRecorderSchedule("vhs_recording_problem/input01.text");
     assertEquals(1645, schedule.getProgramme("1555 1645").getEnds());
   }
 
   @Test
   public void shouldReturnProgrammeList(){
-    VHSRecorderSchedule schedule = new VHSRecorderSchedule("/vhs_recording_problem/input01.text");
+    VHSRecorderSchedule schedule = new VHSRecorderSchedule("vhs_recording_problem/input01.text");
     assertEquals(4, schedule.getProgrammes().size());
   }
 
   @Test
   public void shouldReturnNonClashingList(){
-    VHSRecorderSchedule schedule = new VHSRecorderSchedule("/vhs_recording_problem/input01.text");
+    VHSRecorderSchedule schedule = new VHSRecorderSchedule("vhs_recording_problem/input01.text");
     assertEquals(3, schedule.getNonClashingSchedule().size());
   }
 
