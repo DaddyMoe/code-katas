@@ -18,9 +18,9 @@ import java.util.List;
 public class CustomFileReaderUtil {
 
 
-  public List<String> getListOfRows(String filePath) {
+  public List<String> getListOfRows(String filePath, Object objectReference) {
     try {
-      String path = this.getClass().getClassLoader().getResource(filePath).getPath();
+      String path = objectReference.getClass().getClassLoader().getResource(filePath).getPath();
       return Files.readAllLines(Paths.get(path), Charset.defaultCharset());
     } catch (IOException e) {
       //log error and instantiate empty

@@ -16,7 +16,7 @@ public class CustomFileReaderUtilTest {
   @Test
   public void shouldReadAndReturnLinesFromFileAsExpected(){
     CustomFileReaderUtil readerUtil = new CustomFileReaderUtil();
-    List<String> rows = readerUtil.getListOfRows("file_loader_test_file.log");
+    List<String> rows = readerUtil.getListOfRows("file_loader_test_file.log", this);
     assertEquals("", 5, rows.size());
   }
 }
