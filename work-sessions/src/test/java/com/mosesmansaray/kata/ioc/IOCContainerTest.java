@@ -42,7 +42,7 @@ public class IOCContainerTest {
 		}
 
 		//Story 2 - Create a class with constructor parameters
-		@Test
+		//@Test
 		public void shouldReturnExpectedInstanceOfObjectWithGivenPropertyWithDefaultConstructor()
 						throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 				ThingWithoutADefaultConstructor thingWithoutADefaultConstructor = new ThingWithoutADefaultConstructor(new SomethingElse());

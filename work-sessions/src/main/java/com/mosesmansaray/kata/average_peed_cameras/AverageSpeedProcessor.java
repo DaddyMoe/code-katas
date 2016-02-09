@@ -23,7 +23,7 @@ public class AverageSpeedProcessor {
   private final List<Camera> cameras = new ArrayList<>();
 
   public AverageSpeedProcessor(String filePath) {
-    List<String> listOfRows = FILE_READER_UTIL.getListOfRows(filePath);
+    List<String> listOfRows = FILE_READER_UTIL.getListOfRows(filePath, this);
     processFile(listOfRows);
   }
 
