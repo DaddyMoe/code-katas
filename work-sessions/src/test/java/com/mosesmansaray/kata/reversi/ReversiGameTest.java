@@ -54,7 +54,7 @@ public class ReversiGameTest {
     assertEquals("O", board[4][4]);
   }
 
-  @Test
+  //@Test
   public void shouldReturnBoardForValidHorizontalMoves(){
     String[][] board = reversiGame.getBoardForValidMoves();
     assertEquals("*", board[2][3]);
