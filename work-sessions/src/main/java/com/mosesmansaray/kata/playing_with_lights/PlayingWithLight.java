@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.BitSet;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -11,8 +13,8 @@ import java.util.concurrent.TimeUnit;
  * Created by moses.mansaray on 01/03/2016.
  */
 public class PlayingWithLight {
-  String[] rowData;
-  boolean[] switchGrid;
+  List<String> rowData;
+  BitSet switchGridBitset;
 
   public static void main(String[] args){
     final long startTime = System.nanoTime();
@@ -22,8 +24,8 @@ public class PlayingWithLight {
     System.out.println("Took: " + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime) );
   }
 
-  public boolean[] getSwitchGrid() {
-    return switchGrid;
+  public BitSet getSwitchGridBitset() {
+    return switchGridBitset;
   }
 
 
@@ -34,8 +36,8 @@ public class PlayingWithLight {
    * @param rawData representation of the grid and child's run
    */
   public PlayingWithLight(String rawData) {
-    rowData = rawData.split("\n");
-    switchGrid = new boolean[Integer.parseInt(rowData[0])];
+    rowData = Arrays.asList(rawData.split("\n"));
+    switchGridBitset = new BitSet(Integer.parseInt(rowData.get(0)));
   }
 
 
@@ -47,47 +49,53 @@ public class PlayingWithLight {
   public PlayingWithLight(String filePath, boolean fromPath) {
     try {
       String path = getClass().getClassLoader().getResource(filePath).getPath();
-      List<String> strings = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
-      rowData = new String[strings.size()];
-      rowData = strings.toArray(rowData); //TODO: List to Array!!! = this can be optimized
-      switchGrid = new boolean[Integer.parseInt(rowData[0])];
+      rowData = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
+      switchGridBitset = new BitSet(Integer.parseInt(rowData.get(0)));
     } catch (IOException e) {
       // log?throw?alternative
     }
   }
 
-  public void toggleRange(int startingPos, int endPos) {
-
-    if (startingPos <= endPos) {
-      int i = startingPos;
-      while (i <= endPos) {
-        switchGrid[i] = !switchGrid[i];
-        i++;
-      }
-    }else {
-      int i = startingPos;
-      while (i >= endPos) {
-        switchGrid[i] = !switchGrid[i];
-        i--;
-      }
-
-    }
-  }
-
   public void toggleRows() {
-    for (int i = 1; i < rowData.length; i++) {
-      String[] split = rowData[i].split(" ");
+    for (int i = 1; i < rowData.size(); i++) {
+      String[] split = rowData.get(i).split(" ");
       toggleRange(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
     }
   }
 
   public int getTotalNumberOfSwitchesOn() {
-    int count = 0;
-    for (int i = 0; i < switchGrid.length; i++) {
-        if (switchGrid[i]){
-          count ++;
-        }
+//    switchGridBitset.cardinality();
+//    int count = 0;
+//    for (int i = 0; i < switchGridBitset.length; i++) {
+//        if (switchGridBitset[i]){
+//          count ++;
+//        }
+//    }
+    return switchGridBitset.cardinality();
+  }
+
+
+  public void toggleRange(int startingPos, int endPos) {
+
+//    if (startingPos <= endPos) {
+//      int i = startingPos;
+//      while (i <= endPos) {
+//        switchGridBitset[i] = !switchGridBitset[i];
+//        i++;
+//      }
+//    }else {
+//      int i = startingPos;
+//      while (i >= endPos) {
+//        switchGridBitset[i] = !switchGridBitset[i];
+//        i--;
+//      }
+//
+//    }
+    if (startingPos > endPos) {
+      int temp = startingPos;
+      startingPos = endPos;
+      endPos = temp;
     }
-    return count;
+    switchGridBitset.flip(startingPos, endPos+1);
   }
 }

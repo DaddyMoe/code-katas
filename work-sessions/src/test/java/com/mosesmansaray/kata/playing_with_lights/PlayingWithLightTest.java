@@ -46,16 +46,16 @@ public class PlayingWithLightTest {
 //  @Test
 //  public void shouldReturnExpectSwitchGrid() {
 //    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
-//    int[] switchGrid = playingWithLight.getSwitchGrid();
-//    assertEquals(10, switchGrid.length);
+//    int[] switchGridBitset = playingWithLight.getSwitchGridBitset();
+//    assertEquals(10, switchGridBitset.length);
 //  }
 //
 //  @Test
 //  public void shouldReturnExpectSwitchGrid_AllOff() {
 //    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
-//    int[] switchGrid = playingWithLight.getSwitchGrid();
+//    int[] switchGridBitset = playingWithLight.getSwitchGridBitset();
 //    for (int i = 0; i < 10; i++) {
-//      assertEquals(-1, switchGrid[i]);
+//      assertEquals(-1, switchGridBitset[i]);
 //    }
 //  }
 //
@@ -63,10 +63,10 @@ public class PlayingWithLightTest {
 //  public void shouldOnlySwitchOnExpectedRange() {
 //    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
 //    playingWithLight.toggleRange(3, 6);
-//    int[] switchGrid = playingWithLight.getSwitchGrid();
+//    int[] switchGridBitset = playingWithLight.getSwitchGridBitset();
 //
 //    for (int i = 3; i <= 6; i++) {
-//      assertEquals(1, switchGrid[i]);
+//      assertEquals(1, switchGridBitset[i]);
 //    }
 //  }
 
@@ -77,12 +77,12 @@ public class PlayingWithLightTest {
 //    playingWithLight.toggleRange(3, 6);
 //    playingWithLight.toggleRange(0, 4);
 //
-//    int[] switchGrid = playingWithLight.getSwitchGrid();
+//    int[] switchGridBitset = playingWithLight.getSwitchGridBitset();
 //
-//    assertEquals(-1, switchGrid[3]);
-//    assertEquals(-1, switchGrid[4]);
-//    assertEquals(1, switchGrid[5]);
-//    assertEquals(1, switchGrid[6]);
+//    assertEquals(-1, switchGridBitset[3]);
+//    assertEquals(-1, switchGridBitset[4]);
+//    assertEquals(1, switchGridBitset[5]);
+//    assertEquals(1, switchGridBitset[6]);
 //  }
 //
 //  // auto toggle
@@ -90,18 +90,18 @@ public class PlayingWithLightTest {
 //  public void shouldOnlySwitchOnExpectedRange_AndToggleThroughAllRows() {
 //    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
 //    playingWithLight.toggleRows();
-//    int[] switchGrid = playingWithLight.getSwitchGrid();
+//    int[] switchGridBitset = playingWithLight.getSwitchGridBitset();
 //
-//    assertEquals(1, switchGrid[0]);
-//    assertEquals(1, switchGrid[1]);
-//    assertEquals(1, switchGrid[2]);
-//    assertEquals(1, switchGrid[3]);
-//    assertEquals(1, switchGrid[4]);
-//    assertEquals(-1, switchGrid[5]);
-//    assertEquals(-1, switchGrid[6]);
-//    assertEquals(1, switchGrid[7]);
-//    assertEquals(-1, switchGrid[8]);
-//    assertEquals(1, switchGrid[9]);
+//    assertEquals(1, switchGridBitset[0]);
+//    assertEquals(1, switchGridBitset[1]);
+//    assertEquals(1, switchGridBitset[2]);
+//    assertEquals(1, switchGridBitset[3]);
+//    assertEquals(1, switchGridBitset[4]);
+//    assertEquals(-1, switchGridBitset[5]);
+//    assertEquals(-1, switchGridBitset[6]);
+//    assertEquals(1, switchGridBitset[7]);
+//    assertEquals(-1, switchGridBitset[8]);
+//    assertEquals(1, switchGridBitset[9]);
 //  }
 
   @Test
