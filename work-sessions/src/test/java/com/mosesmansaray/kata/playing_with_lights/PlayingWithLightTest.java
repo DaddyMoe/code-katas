@@ -3,7 +3,6 @@ package com.mosesmansaray.kata.playing_with_lights;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Source : https://www.reddit.com/r/dailyprogrammer/
@@ -44,66 +43,66 @@ public class PlayingWithLightTest {
       "441 152\n" +
       "394 453";
 
-  @Test
-  public void shouldReturnExpectSwitchGrid() {
-    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
-    int[] switchGrid = playingWithLight.getSwitchGrid();
-    assertEquals(10, switchGrid.length);
-  }
+//  @Test
+//  public void shouldReturnExpectSwitchGrid() {
+//    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
+//    int[] switchGrid = playingWithLight.getSwitchGrid();
+//    assertEquals(10, switchGrid.length);
+//  }
+//
+//  @Test
+//  public void shouldReturnExpectSwitchGrid_AllOff() {
+//    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
+//    int[] switchGrid = playingWithLight.getSwitchGrid();
+//    for (int i = 0; i < 10; i++) {
+//      assertEquals(-1, switchGrid[i]);
+//    }
+//  }
+//
+//  @Test
+//  public void shouldOnlySwitchOnExpectedRange() {
+//    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
+//    playingWithLight.toggleRange(3, 6);
+//    int[] switchGrid = playingWithLight.getSwitchGrid();
+//
+//    for (int i = 3; i <= 6; i++) {
+//      assertEquals(1, switchGrid[i]);
+//    }
+//  }
 
-  @Test
-  public void shouldReturnExpectSwitchGrid_AllOff() {
-    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
-    int[] switchGrid = playingWithLight.getSwitchGrid();
-    for (int i = 0; i < 10; i++) {
-      assertEquals(-1, switchGrid[i]);
-    }
-  }
-
-  @Test
-  public void shouldOnlySwitchOnExpectedRange() {
-    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
-    playingWithLight.toggleRange(3, 6);
-    int[] switchGrid = playingWithLight.getSwitchGrid();
-
-    for (int i = 3; i <= 6; i++) {
-      assertEquals(1, switchGrid[i]);
-    }
-  }
-
-  // Manual toggle
-  @Test
-  public void shouldOnlySwitchOnExpectedRange_AndToggleIfSwitchAgain() {
-    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
-    playingWithLight.toggleRange(3, 6);
-    playingWithLight.toggleRange(0, 4);
-
-    int[] switchGrid = playingWithLight.getSwitchGrid();
-
-    assertEquals(-1, switchGrid[3]);
-    assertEquals(-1, switchGrid[4]);
-    assertEquals(1, switchGrid[5]);
-    assertEquals(1, switchGrid[6]);
-  }
-
-  // auto toggle
-  @Test
-  public void shouldOnlySwitchOnExpectedRange_AndToggleThroughAllRows() {
-    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
-    playingWithLight.toggleRows();
-    int[] switchGrid = playingWithLight.getSwitchGrid();
-
-    assertEquals(1, switchGrid[0]);
-    assertEquals(1, switchGrid[1]);
-    assertEquals(1, switchGrid[2]);
-    assertEquals(1, switchGrid[3]);
-    assertEquals(1, switchGrid[4]);
-    assertEquals(-1, switchGrid[5]);
-    assertEquals(-1, switchGrid[6]);
-    assertEquals(1, switchGrid[7]);
-    assertEquals(-1, switchGrid[8]);
-    assertEquals(1, switchGrid[9]);
-  }
+//  // Manual toggle
+//  @Test
+//  public void shouldOnlySwitchOnExpectedRange_AndToggleIfSwitchAgain() {
+//    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
+//    playingWithLight.toggleRange(3, 6);
+//    playingWithLight.toggleRange(0, 4);
+//
+//    int[] switchGrid = playingWithLight.getSwitchGrid();
+//
+//    assertEquals(-1, switchGrid[3]);
+//    assertEquals(-1, switchGrid[4]);
+//    assertEquals(1, switchGrid[5]);
+//    assertEquals(1, switchGrid[6]);
+//  }
+//
+//  // auto toggle
+//  @Test
+//  public void shouldOnlySwitchOnExpectedRange_AndToggleThroughAllRows() {
+//    PlayingWithLight playingWithLight = new PlayingWithLight(rawExample);
+//    playingWithLight.toggleRows();
+//    int[] switchGrid = playingWithLight.getSwitchGrid();
+//
+//    assertEquals(1, switchGrid[0]);
+//    assertEquals(1, switchGrid[1]);
+//    assertEquals(1, switchGrid[2]);
+//    assertEquals(1, switchGrid[3]);
+//    assertEquals(1, switchGrid[4]);
+//    assertEquals(-1, switchGrid[5]);
+//    assertEquals(-1, switchGrid[6]);
+//    assertEquals(1, switchGrid[7]);
+//    assertEquals(-1, switchGrid[8]);
+//    assertEquals(1, switchGrid[9]);
+//  }
 
   @Test
   public void shouldReturnTotalLeftSwitchedOn() {

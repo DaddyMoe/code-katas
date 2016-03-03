@@ -1,27 +1,31 @@
 package com.mosesmansaray.kata.playing_with_lights;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by moses.mansaray on 01/03/2016.
  */
 public class PlayingWithLight {
   String[] rowData;
+  boolean[] switchGrid;
 
-  public int[] getSwitchGrid() {
+  public static void main(String[] args){
+    final long startTime = System.nanoTime();
+    PlayingWithLight playingWithLight = new PlayingWithLight("lots_of_switches.txt", true);
+    playingWithLight.toggleRows();
+    System.out.println(playingWithLight.getTotalNumberOfSwitchesOn());
+    System.out.println("Took: " + TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime) );
+  }
+
+  public boolean[] getSwitchGrid() {
     return switchGrid;
   }
 
-  int[] switchGrid;
 
 
   /**
@@ -31,9 +35,7 @@ public class PlayingWithLight {
    */
   public PlayingWithLight(String rawData) {
     rowData = rawData.split("\n");
-    switchGrid = new int[Integer.parseInt(rowData[0])];
-    initializeAllSwitchesToOff(switchGrid);
-
+    switchGrid = new boolean[Integer.parseInt(rowData[0])];
   }
 
 
@@ -48,17 +50,9 @@ public class PlayingWithLight {
       List<String> strings = Files.readAllLines(Paths.get(path), Charset.defaultCharset());
       rowData = new String[strings.size()];
       rowData = strings.toArray(rowData); //TODO: List to Array!!! = this can be optimized
-      switchGrid = new int[Integer.parseInt(rowData[0])];
-      initializeAllSwitchesToOff(switchGrid);
+      switchGrid = new boolean[Integer.parseInt(rowData[0])];
     } catch (IOException e) {
       // log?throw?alternative
-    }
-  }
-
-  //Alternatively use default int initialization of, taking -1 to toggle
-  private void initializeAllSwitchesToOff(int[] switchGrid) {
-    for (int i = 0; i < switchGrid.length; i++) {
-      switchGrid[i] = -1;
     }
   }
 
@@ -67,13 +61,13 @@ public class PlayingWithLight {
     if (startingPos <= endPos) {
       int i = startingPos;
       while (i <= endPos) {
-        switchGrid[i] = switchGrid[i] * -1;
+        switchGrid[i] = !switchGrid[i];
         i++;
       }
     }else {
       int i = startingPos;
       while (i >= endPos) {
-        switchGrid[i] = switchGrid[i] * -1;
+        switchGrid[i] = !switchGrid[i];
         i--;
       }
 
@@ -90,7 +84,7 @@ public class PlayingWithLight {
   public int getTotalNumberOfSwitchesOn() {
     int count = 0;
     for (int i = 0; i < switchGrid.length; i++) {
-        if (switchGrid[i] == 1){
+        if (switchGrid[i]){
           count ++;
         }
     }
